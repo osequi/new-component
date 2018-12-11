@@ -143,7 +143,7 @@ mkDirPromise(componentDir)
   ))
   .then(template => (
     // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(docPath, prettify(template))
+    writeFilePromise(docPath, template)
   ))
   .then(template => {
     logItemCompletion('Doc created.');
