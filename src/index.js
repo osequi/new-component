@@ -48,6 +48,7 @@ const [componentName] = program.args;
 const templateComponentPath = './templates/component.js';
 const templateStoryPath = './templates/component.stories.js';
 const templateTestPath = './templates/component.test.js';
+const templateDocPath = './templates/component.md';
 const templateIndexPath = './templates/index.js';
 
 // Target files
@@ -55,6 +56,7 @@ const componentDir = `${program.dir}/${componentName}`;
 const componentPath = `${componentDir}/${componentName}.js`;
 const storyPath = `${componentDir}/${componentName}.stories.js`;
 const testPath = `${componentDir}/${componentName}.test.js`;
+const docPath = `${componentDir}/${componentName}.md`;
 const indexPath = `${componentDir}/index.js`;
 
 // Logging ...
@@ -130,6 +132,21 @@ mkDirPromise(componentDir)
   ))
   .then(template => {
     logItemCompletion('Test created.');
+    return template;
+  })
+  .then(() => (
+    readFilePromiseRelative(templateDocPath)
+  ))
+  .then(template => (
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  ))
+  .then(template => (
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(docPath, prettify(template))
+  ))
+  .then(template => {
+    logItemCompletion('Doc created.');
     return template;
   })
   .then(() => (
