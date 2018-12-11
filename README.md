@@ -8,10 +8,10 @@ Added Storybook and basic testing.
 Install via NPM:
 ```bash
 # Using Yarn:
-$ yarn global add new-component
+$ yarn global add @metamn/new-component
 
 # or, using NPM
-$ npm i -g new-component
+$ npm i -g @metamn/new-component
 ```
 
 Run:
@@ -141,3 +141,21 @@ In another folder:
 npm i <path_to_new_component_repo>/new-component@0.0.1.tgz
 ./node_modules/.bin/new-component Button
 ```
+
+## Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+### [0.0.2] - 2018-12-11
+#### Added
+- A CHANGELOG section in README.
+#### Changed
+- The install instructions in README.
+
+### 0.0.1 - 2018-12-11
+#### Added
+- Initial release
