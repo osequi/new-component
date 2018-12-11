@@ -36,36 +36,29 @@ program
   .version(version)
   .arguments('<componentName>')
   .option(
-    '-t, --type <componentType>',
-    'Type of React component to generate (default: "class")',
-    /^(class|pure-class|functional)$/i,
-    config.type
-  ).option(
     '-d, --dir <pathToDirectory>',
     'Path to the "components" directory (default: "src/components")',
     config.dir
-  ).option(
-    '-x, --extension <fileExtension>',
-    'Which file extension to use for the component (default: "js")',
-    config.extension
-  ).parse(process.argv);
+  )
+  .parse(process.argv);
 
 const [componentName] = program.args;
 
-// Find the path to the selected template file.
-const templatePath = `./templates/${program.type}.js`;
+// Templates
+const templateComponentPath = './templates/component.js';
+const templateStoryPath = './templates/component.stories.js';
+const templateTestPath = './templates/component.test.js';
+const templateIndexPath = './templates/index.js';
 
-// Get all of our file paths worked out, for the user's project.
+// Target files
 const componentDir = `${program.dir}/${componentName}`;
-const filePath = `${componentDir}/${componentName}.${program.extension}`;
+const componentPath = `${componentDir}/${componentName}.js`;
+const storyPath = `${componentDir}/${componentName}.stories.js`;
+const testPath = `${componentDir}/${componentName}.test.js`;
 const indexPath = `${componentDir}/index.js`;
 
-// Our index template is super straightforward, so we'll just inline it for now.
-const indexTemplate = prettify(`\
-export { default } from './${componentName}';
-`);
-
-logIntro({ name: componentName, dir: componentDir, type: program.type });
+// Logging ...
+logIntro({ name: componentName, dir: componentDir });
 
 
 // Check if componentName is provided
@@ -88,10 +81,10 @@ if (fs.existsSync(fullPathToComponentDir)) {
   process.exit(0);
 }
 
-// Start by creating the directory that our component lives in.
+// Create the files one bu one
 mkDirPromise(componentDir)
   .then(() => (
-    readFilePromiseRelative(templatePath)
+    readFilePromiseRelative(templateComponentPath)
   ))
   .then(template => {
     logItemCompletion('Directory created.');
@@ -103,18 +96,55 @@ mkDirPromise(componentDir)
   ))
   .then(template => (
     // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(filePath, prettify(template))
+    writeFilePromise(componentPath, prettify(template))
   ))
   .then(template => {
-    logItemCompletion('Component built and saved to disk.');
+    logItemCompletion('Component created.');
     return template;
   })
+  .then(() => (
+    readFilePromiseRelative(templateStoryPath)
+  ))
   .then(template => (
-    // We also need the `index.js` file, which allows easy importing.
-    writeFilePromise(indexPath, prettify(indexTemplate))
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  ))
+  .then(template => (
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(storyPath, prettify(template))
   ))
   .then(template => {
-    logItemCompletion('Index file built and saved to disk.');
+    logItemCompletion('Story created.');
+    return template;
+  })
+  .then(() => (
+    readFilePromiseRelative(templateTestPath)
+  ))
+  .then(template => (
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  ))
+  .then(template => (
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(testPath, prettify(template))
+  ))
+  .then(template => {
+    logItemCompletion('Test created.');
+    return template;
+  })
+  .then(() => (
+    readFilePromiseRelative(templateIndexPath)
+  ))
+  .then(template => (
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  ))
+  .then(template => (
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(indexPath, prettify(template))
+  ))
+  .then(template => {
+    logItemCompletion('Index created.');
     return template;
   })
   .then(template => {
