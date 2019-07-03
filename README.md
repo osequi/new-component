@@ -6,6 +6,7 @@ Added Storybook and basic testing.
 ### Usage
 
 Install via NPM:
+
 ```bash
 # Using Yarn:
 $ yarn global add @metamn/new-component
@@ -15,6 +16,7 @@ $ npm i -g @metamn/new-component
 ```
 
 Run:
+
 ```bash
 $ cd PROJECT_DIRECTORY
 $ new-component Button
@@ -26,93 +28,49 @@ In `src/components/Button`:
 
 ```Javascript
 // `Button/Button.js`
-/**
- * Component description
- *
- */
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 /**
- * The loading container
+ * Defines the prop types
  */
-const Loading = styled.div``;
+const propTypes = {};
 
 /**
- * The main container
+ * Defines the default props
  */
-const Container = styled.div``;
+const defaultProps = {};
 
 /**
- * The main class
+ * Styles the component container
  */
-class Button extends React.Component {
-  render() {
-    const { loading, className } = this.props;
-
-    if (loading) {
-      return <Loading className={className}>Loading ...</Loading>;
-    }
-
-    return <Container className={className} />;
-  }
-}
+const Container = styled("div")(props => ({}));
 
 /**
- * The prop types
+ * Displays the component
  */
-Button.propTypes = {
-  /**
-	 * Component is loading?
-	 */
-  loading: PropTypes.bool
+const Button = props => {
+  return <Container className="Button">Button</Container>;
 };
 
-/**
- * Default props
- */
-Button.defaultProps = {
-  loading: false
-};
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default Button;
+export { propTypes, defaultProps };
 ```
 
 ```Javascript
 // `Button/Button.stories.js`
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { withInfo } from "@storybook/addon-info";
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 
 import Button from "./Button";
 import description from "./Button.md";
 
-storiesOf("Components/Button", module).add("Overview", () => <Button />, {
-  info: {
-    inline: true,
-    text: description
-  }
-});
-```
-
-```Javascript
-// `Button/Button.test.js`
-import React from "react";
-
-import styled from "styled-components";
-import renderer from "react-test-renderer";
-import "jest-styled-components";
-
-import Button from "./Button";
-
-describe("Button container", function() {
-  it("should not overflow", () => {
-    const wrapper = renderer.create(<Button />).toJSON();
-    expect(wrapper).toHaveStyleRule("overflow", "hidden");
-  });
+storiesOf("Button", module).add("Overview", () => <Button />, {
+  notes: { markdown: description }
 });
 ```
 
@@ -123,12 +81,15 @@ describe("Button container", function() {
 
 ```Javascript
 // `Button/index.js`
-export { default } from './Button';
+export { default } from "./Button";
+export { propTypes, defaultProps } from "./Button";
 ```
 
 ### Modify & test locally
 
 You can easily fork this repo, modify, test, and publish on npm.
+
+NOTE: Always start with changing the version number in `package.json` !!
 
 #### Test locally
 
@@ -155,19 +116,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [0.0.4] - 2018-12-11
+
 #### Fixed
-- Markdown is not run through  `prettify()`.
+
+- Markdown is not run through `prettify()`.
 
 ### [0.0.3] - 2018-12-11
+
 #### Added
+
 - Markdown documentation support.
 
 ### [0.0.2] - 2018-12-11
+
 #### Added
+
 - A CHANGELOG section in README.
+
 #### Changed
+
 - The install instructions in README.
 
 ### 0.0.1 - 2018-12-11
+
 #### Added
+
 - Initial release

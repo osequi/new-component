@@ -1,61 +1,31 @@
-/**
- * Component description
- *
- */
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
-
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 /**
- * The loading container
+ * Defines the prop types
  */
-const Loading = styled.div``;
-
+const propTypes = {};
 
 /**
- * The main container
+ * Defines the default props
  */
-const Container = styled.div``;
-
+const defaultProps = {};
 
 /**
- * The main class
+ * Styles the component container
  */
-class COMPONENT_NAME extends React.Component {
-	render() {
-		const {loading, className} = this.props;
-
-		if (loading) {
-			return (
-				<Loading className={className}>Loading ...</Loading>
-			)
-		}
-
-		return (
-			<Container className={className} />
-		)
-	}
-}
-
+const Container = styled("div")(props => ({}));
 
 /**
- * The prop types
+ * Displays the component
  */
-COMPONENT_NAME.propTypes = {
-	/**
-	 * Component is loading?
-	 */
-	loading: PropTypes.bool,
-}
-
-
-/**
- * Default props
- */
-COMPONENT_NAME.defaultProps = {
-	loading: false,
+const COMPONENT_NAME = props => {
+  return <Container className="COMPONENT_NAME">COMPONENT_NAME</Container>;
 };
 
+COMPONENT_NAME.propTypes = propTypes;
+COMPONENT_NAME.defaultProps = defaultProps;
 
 export default COMPONENT_NAME;
+export { propTypes, defaultProps };
