@@ -114,6 +114,8 @@ NOTE: Always update the changelog
 
 #### Publish
 
+First push changes to Github. Then:
+
 ```bash
 npm publish
 ```
