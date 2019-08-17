@@ -58,7 +58,7 @@ Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
 export default Button;
-export { propTypes, defaultProps };
+export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
 ```
 
 ```Javascript
@@ -81,8 +81,7 @@ storiesOf("Button", module).add("Overview", () => <Button />, {
 
 ```Javascript
 // `Button/index.js`
-export { default } from "./Button";
-export { propTypes, defaultProps } from "./Button";
+export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
 ```
 
 ### Modify & test locally
@@ -126,6 +125,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.1.1] - 2018-08-17
+
+#### Changed
+
+- How default props are exported
 
 ### [0.1.0] - 2018-07-03
 

@@ -1,2 +1,5 @@
-export { default } from "./COMPONENT_NAME";
-export { propTypes, defaultProps } from "./COMPONENT_NAME";
+export {
+  default,
+  COMPONENT_NAMEPropTypes,
+  COMPONENT_NAMEDefaultProps
+} from "./COMPONENT_NAME";

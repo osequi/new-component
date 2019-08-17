@@ -28,4 +28,4 @@ COMPONENT_NAME.propTypes = propTypes;
 COMPONENT_NAME.defaultProps = defaultProps;
 
 export default COMPONENT_NAME;
-export { propTypes, defaultProps };
+export { propTypes as COMPONENT_NAMEPropTypes, COMPONENT_NAMEDefaultProps };
