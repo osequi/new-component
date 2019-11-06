@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 /**
  * Defines the prop types
@@ -13,19 +12,17 @@ const propTypes = {};
 const defaultProps = {};
 
 /**
- * Styles the component container
- */
-const Container = styled("div")(props => ({}));
-
-/**
  * Displays the component
  */
 const COMPONENT_NAME = props => {
-  return <Container className="COMPONENT_NAME">COMPONENT_NAME</Container>;
+  return <div className="COMPONENT_NAME">COMPONENT_NAME</div>;
 };
 
 COMPONENT_NAME.propTypes = propTypes;
 COMPONENT_NAME.defaultProps = defaultProps;
 
 export default COMPONENT_NAME;
-export { propTypes as COMPONENT_NAMEPropTypes, COMPONENT_NAMEDefaultProps };
+export {
+  propTypes as COMPONENT_NAMEPropTypes,
+  defaultProps as COMPONENT_NAMEDefaultProps
+};

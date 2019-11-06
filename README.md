@@ -30,7 +30,6 @@ In `src/components/Button`:
 // `Button/Button.js`
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 /**
  * Defines the prop types
@@ -42,16 +41,12 @@ const propTypes = {};
  */
 const defaultProps = {};
 
-/**
- * Styles the component container
- */
-const Container = styled("div")(props => ({}));
 
 /**
  * Displays the component
  */
 const Button = props => {
-  return <Container className="Button">Button</Container>;
+  return <div className="Button">Button</div>;
 };
 
 Button.propTypes = propTypes;
@@ -64,19 +59,33 @@ export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
 ```Javascript
 // `Button/Button.stories.js`
 import React from "react";
-import { storiesOf } from "@storybook/react";
-
 import Button from "./Button";
-import description from "./Button.md";
+import ApiDoc from "./Button.md";
 
-storiesOf("Button", module).add("Overview", () => <Button />, {
-  notes: { markdown: description }
-});
+export default {
+  component: Button,
+  title: "Button",
+  parameters: { notes: ApiDoc }
+};
+
+export const Default = () => <Button />;
 ```
 
 ```Markdown
 // `Button/Button.md`
 # Button
+```
+
+```Javascript
+// `Button/Button.test.js`
+import React from "react";
+import { render } from "@testing-library/react";
+import Button from "./Button";
+
+it("has a Button component", () => {
+  const { getByText } = render(<Button />);
+  expect(getByText("Button")).toBeInTheDocument();
+});
 ```
 
 ```Javascript
@@ -103,7 +112,7 @@ This will create a file like `new-component@0.0.1.tgz`.
 In another folder:
 
 ```bash
-npm i <path_to_new_component_repo>/new-component@0.0.1.tgz
+npm i <path_to_new_component_repo>/new-component@0.0.1.tgz &&
 ./node_modules/.bin/new-component Button
 ```
 
@@ -125,6 +134,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.2.0] - 2019-11-6
+
+#### Added
+
+- Default tests
+
+#### Changed
+
+- Storybook stories to follow the Component Story Format: https://storybook.js.org/docs/formats/component-story-format/
+
+#### Removed
+
+- `styled-components`, because many times components use another library, like `material-ui`
+
+### [0.1.2] - 2018-08-17
+
+#### Fixed
+
+- Exporting default props
 
 ### [0.1.1] - 2018-08-17
 

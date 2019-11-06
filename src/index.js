@@ -46,6 +46,7 @@ const [componentName] = program.args;
 const templateComponentPath = "./templates/component.js";
 const templateStoryPath = "./templates/component.stories.js";
 const templateDocPath = "./templates/component.md";
+const templateTestPath = "./templates/component.test.js";
 const templateIndexPath = "./templates/index.js";
 
 // Target files
@@ -53,6 +54,7 @@ const componentDir = `${program.dir}/${componentName}`;
 const componentPath = `${componentDir}/${componentName}.js`;
 const storyPath = `${componentDir}/${componentName}.stories.js`;
 const docPath = `${componentDir}/${componentName}.md`;
+const testPath = `${componentDir}/${componentName}.test.js`;
 const indexPath = `${componentDir}/index.js`;
 
 // Logging ...
@@ -70,9 +72,7 @@ if (!componentName) {
 const fullPathToParentDir = path.resolve(program.dir);
 if (!fs.existsSync(fullPathToParentDir)) {
   logError(
-    `Sorry, you need to create a parent "components" directory.\n(new-component is looking for a directory at ${
-      program.dir
-    }).`
+    `Sorry, you need to create a parent "components" directory.\n(new-component is looking for a directory at ${program.dir}).`
   );
   process.exit(0);
 }
@@ -86,7 +86,7 @@ if (fs.existsSync(fullPathToComponentDir)) {
   process.exit(0);
 }
 
-// Create the files one bu one
+// Create the files one by one
 mkDirPromise(componentDir)
   .then(() => readFilePromiseRelative(templateComponentPath))
   .then(template => {
@@ -129,6 +129,19 @@ mkDirPromise(componentDir)
   )
   .then(template => {
     logItemCompletion("Doc created.");
+    return template;
+  })
+  .then(() => readFilePromiseRelative(templateTestPath))
+  .then(template =>
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  )
+  .then(template =>
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(testPath, prettify(template))
+  )
+  .then(template => {
+    logItemCompletion("Test created.");
     return template;
   })
   .then(() => readFilePromiseRelative(templateIndexPath))
