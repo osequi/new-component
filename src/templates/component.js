@@ -36,7 +36,9 @@ const Container = styled("div")(props => ({
  */
 const COMPONENT_NAME = props => {
   const { t } = useTranslation("COMPONENT_NAME");
-  return <div className="COMPONENT_NAME">{t("COMPONENT_NAME")}</div>;
+  return (
+    <Container className="COMPONENT_NAME">{t("COMPONENT_NAME")}</Container>
+  );
 };
 
 COMPONENT_NAME.propTypes = propTypes;

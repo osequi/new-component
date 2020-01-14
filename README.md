@@ -132,7 +132,9 @@ const Container = styled("div")(props => ({
  */
 const Button = props => {
   const { t } = useTranslation("Button");
-  return <div className="Button">{t("Button")}</div>;
+  return (
+    <Container className="COMPONENT_NAME">{t("COMPONENT_NAME")}</Container>
+  );
 };
 
 Button.propTypes = propTypes;
