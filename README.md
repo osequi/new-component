@@ -22,6 +22,72 @@ $ cd PROJECT_DIRECTORY
 $ new-component Button
 ```
 
+### Special edition
+
+This version of `new-component` is a special edition supporting translations with `i18next` at component level.
+
+#### Setup
+
+You must have a `i18n.js` config file next to the `index.js` file in a CRA app.
+
+```js
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+
+/**
+ * Sets up translations
+ *
+ * - Every component manages it's own translations via namespaces
+ * - Every component adds it's own translation items to `resources`
+ *
+ * @see https://github.com/i18next/react-i18next/issues/299
+ * @see https://react.i18next.com/latest/usetranslation-hook#loading-namespaces
+ *
+ */
+const resources = {};
+
+/**
+ * Sets up i18next
+ *
+ * @see https://react.i18next.com/latest/using-with-hooks
+ */
+i18n
+  /**
+   * Detects user language
+   *
+   * @see https://github.com/i18next/i18next-browser-languageDetector
+   */
+  .use(LanguageDetector)
+  /**
+   * Passes the i18n instance to react-i18next.
+   */
+  .use(initReactI18next)
+  /**
+   * Inits i18next
+   *
+   * @see https://www.i18next.com/overview/configuration-options
+   */
+  .init({
+    resources,
+    lng: "en-EN",
+
+    keySeparator: false, // we do not use keys in form messages.welcome
+
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    }
+  });
+
+export default i18n;
+```
+
+In `index.js` you'll have to add this import statement:
+
+```js
+import "./i18n"; // See https://react.i18next.com/latest/using-with-hooks
+```
+
 ### What you'll get
 
 In `src/components/Button`:
@@ -134,6 +200,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.3.0] - 2020-01-14
+
+#### Added
+
+- `styled-components`, re-added, because when a new component is added it's first purpose is to mockup. Also every new component has a border and padding added to serve mockuping.
+- `react-i18next` with `addResourceBundle` loading translations from language files co-located to the component
 
 ### [0.2.0] - 2019-11-6
 

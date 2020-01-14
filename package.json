@@ -1,6 +1,6 @@
 {
   "name": "@metamn/new-component",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI for creating new React components",
   "main": "src/index.js",
   "scripts": {
@@ -20,6 +20,9 @@
   "dependencies": {
     "chalk": "2.1.0",
     "commander": "2.11.0",
-    "prettier": "1.5.3"
+    "i18next": "^19.0.3",
+    "i18next-browser-languagedetector": "^4.0.1",
+    "prettier": "^1.19.1",
+    "react-i18next": "^11.3.0"
   }
 }
