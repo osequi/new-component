@@ -48,6 +48,9 @@ const templateStoryPath = "./templates/component.stories.js";
 const templateDocPath = "./templates/component.md";
 const templateTestPath = "./templates/component.test.js";
 const templateIndexPath = "./templates/index.js";
+const templateLangEnEn = "./templates/component.lang.en-en.js";
+const templateLangNlNl = "./templates/component.lang.nl-nl.js";
+const templateLangNlBe = "./templates/component.lang.nl-be.js";
 
 // Target files
 const componentDir = `${program.dir}/${componentName}`;
@@ -56,6 +59,9 @@ const storyPath = `${componentDir}/${componentName}.stories.js`;
 const docPath = `${componentDir}/${componentName}.md`;
 const testPath = `${componentDir}/${componentName}.test.js`;
 const indexPath = `${componentDir}/index.js`;
+const langEnEnPath = `${componentDir}/${componentName}.lang.en-en.js`;
+const langNlNlPath = `${componentDir}/${componentName}.lang.nl-nl.js`;
+const langNlBePath = `${componentDir}/${componentName}.lang.nl-be.js`;
 
 // Logging ...
 logIntro({ name: componentName, dir: componentDir });
@@ -155,6 +161,45 @@ mkDirPromise(componentDir)
   )
   .then(template => {
     logItemCompletion("Index created.");
+    return template;
+  })
+  .then(() => readFilePromiseRelative(templateLangEnEn))
+  .then(template =>
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  )
+  .then(template =>
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(langEnEnPath, prettify(template))
+  )
+  .then(template => {
+    logItemCompletion("Lang En-en created.");
+    return template;
+  })
+  .then(() => readFilePromiseRelative(templateLangNlNl))
+  .then(template =>
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  )
+  .then(template =>
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(langNlNlPath, prettify(template))
+  )
+  .then(template => {
+    logItemCompletion("Lang Nl-nl created.");
+    return template;
+  })
+  .then(() => readFilePromiseRelative(templateLangNlBe))
+  .then(template =>
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  )
+  .then(template =>
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(langNlBePath, prettify(template))
+  )
+  .then(template => {
+    logItemCompletion("Lang Nl-be created.");
     return template;
   })
   .then(template => {

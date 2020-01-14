@@ -96,6 +96,17 @@ In `src/components/Button`:
 // `Button/Button.js`
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
+import { en_en } from "./Button.lang.en-en";
+import { nl_nl } from "./Button.lang.nl-nl";
+import { nl_be } from "./Button.lang.nl-be";
+
+i18n.addResourceBundle("en-EN", "Button", en_en);
+i18n.addResourceBundle("nl-NL", "Button", nl_nl);
+i18n.addResourceBundle("nl-BE", "Button", nl_be);
 
 /**
  * Defines the prop types
@@ -107,12 +118,21 @@ const propTypes = {};
  */
 const defaultProps = {};
 
+/**
+ * Styles the component container
+ */
+const Container = styled("div")(props => ({
+  border: "1px solid",
+  padding: "1.25em",
+  margin: "1.25em"
+}));
 
 /**
  * Displays the component
  */
 const Button = props => {
-  return <div className="Button">Button</div>;
+  const { t } = useTranslation("Button");
+  return <div className="Button">{t("Button")}</div>;
 };
 
 Button.propTypes = propTypes;
@@ -157,6 +177,33 @@ it("has a Button component", () => {
 ```Javascript
 // `Button/index.js`
 export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
+```
+
+```Javascript
+// `Button/Button.lang.en-en.js`
+const en_en = {
+  Button: "Button"
+};
+
+export { en_en };
+```
+
+```Javascript
+// `Button/Button.lang.nl-nl.js`
+const nl_nl = {
+  Button: "Button (nl_nl)"
+};
+
+export { nl_nl };
+```
+
+```Javascript
+// `Button/Button.lang.nl-be.js`
+const nl_be = {
+  Button: "Button (nl_be)"
+};
+
+export { nl_be };
 ```
 
 ### Modify & test locally
