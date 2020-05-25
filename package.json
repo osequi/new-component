@@ -1,6 +1,6 @@
 {
   "name": "@metamn/new-component",
-  "version": "v0.4.1",
+  "version": "v0.4.2",
   "description": "CLI for creating new React components",
   "main": "src/index.js",
   "scripts": {

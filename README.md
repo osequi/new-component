@@ -121,43 +121,167 @@ In `src/components/Button`:
 
 ```Javascript
 // `Button/Button.js`
-//
+/**
+ * Component short description
+ *
+ * @see Button.md for details
+ */
+
+/**
+ * Imports React and third party packages
+ */
+import React from "react";
+import clsx from "clsx";
+
+/**
+ * Imports project specific components and hooks
+ */
+
+/**
+ * Imports propTypes / component data requirements
+ */
+import { propTypes, defaultProps } from "./Button.data";
+
+/**
+ * Imports Material UI components
+ */
+import { makeStyles } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+
+/**
+ * Imports translations
+ */
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
+import { ro_ro } from "./Button.lang.ro-ro";
+import { hu_hu } from "./Button.lang.hu-hu";
+import { en_us } from "./Button.lang.en-us";
+import { de_de } from "./Button.lang.de-de";
+
+i18n.addResourceBundle("ro-RO", "Button", ro_ro);
+i18n.addResourceBundle("hu-HU", "Button", hu_hu);
+i18n.addResourceBundle("en-US", "Button", en_us);
+i18n.addResourceBundle("de-DE", "Button", de_de);
+
+/**
+ * Styles the component
+ */
+const useStyles = makeStyles(theme => ({
+  container: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    border: "1px solid"
+  }
+}));
+
+/**
+ * Displays the component
+ */
+const Button = props => {
+  const { container } = useStyles(props);
+  const { t } = useTranslation("Button");
+
+  return (
+    <Grid container>
+      <Grid item xs={12} className={clsx(container, "Button")}>
+        {t("Button")}
+      </Grid>
+    </Grid>
+  );
+};
+
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
+
+export default Button;
+export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
 ```
 
 ```Javascript
 // `Button/Button.data.js`
+/**
+ * Defines the data requirements for the company
+ */
+import PropTypes from "prop-types";
+
+/**
+ * Defines the prop types
+ */
+const propTypes = {};
+
+/**
+ * Defines the default props
+ */
+const defaultProps = {};
+
+export { propTypes, defaultProps };
 ```
 
 ```Javascript
 // `Button/Button.native.js`
+/**
+ * React Native specific code
+ *
+ * @see https://reactnative.dev/docs/platform-specific-code#platform-specific-extensions
+ */
 ```
 
 ```Markdown
 // `Button/Button.md`
+## Button
 ```
 
 ```Javascript
 // `Button/Button.test.js`
+import React from "react";
+import { render } from "@testing-library/react";
+import Button from "./Button";
+
+it("has a Button component", () => {
+  const { getByText } = render(<Button />);
+  expect(getByText("Button")).toBeInTheDocument();
+});
 ```
 
 ```Javascript
 // `Button/index.js`
+export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
 ```
 
 ```Javascript
 // `Button/Button.lang.en-us.js`
+const en_us = {
+  Button: "Button"
+};
+
+export { en_us };
 ```
 
 ```Javascript
 // `Button/Button.lang.de-de.js`
+const de_de = {
+  Button: "Button (de_de)"
+};
+
+export { de_de };
 ```
 
 ```Javascript
 // `Button/Button.lang.ro-ro.js`
+const ro_ro = {
+  Button: "Button (ro_ro)"
+};
+
+export { ro_ro };
 ```
 
 ```Javascript
 // `Button/Button.lang.hu-hu.js`
+const hu_hu = {
+  Button: "Button (hu_hu)"
+};
+
+export { hu_hu };
 ```
 
 ### Modify & test locally
@@ -208,7 +332,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [0.4.0] - 2020-05-25
+### [0.4.2] - 2020-05-25
 
 #### Added
 
