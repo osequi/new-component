@@ -1,6 +1,6 @@
 {
   "name": "@metamn/new-component",
-  "version": "0.3.0",
+  "version": "v0.4.0-pineyard",
   "description": "CLI for creating new React components",
   "main": "src/index.js",
   "scripts": {

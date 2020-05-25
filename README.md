@@ -7,6 +7,8 @@ Added Storybook and basic testing.
 
 Install via NPM:
 
+#### Globally for all projects
+
 ```bash
 # Using Yarn:
 $ yarn global add @metamn/new-component
@@ -15,7 +17,17 @@ $ yarn global add @metamn/new-component
 $ npm i -g @metamn/new-component
 ```
 
-Run:
+#### Locally for a specific project
+
+```bash
+# Using Yarn:
+$ yarn add @metamn/new-component
+
+# or, using NPM
+$ npm i @metamn/new-component
+```
+
+Then run:
 
 ```bash
 $ cd PROJECT_DIRECTORY
