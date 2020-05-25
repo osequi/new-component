@@ -178,7 +178,7 @@ This will create a file like `new-component@0.0.1.tgz`.
 In another folder:
 
 ```bash
-npm i <path_to_new_component_repo>/new-component@0.0.1.tgz &&
+npm i <path_to_new_component_repo>/metamn-new-component@0.0.1.tgz &&
 ./node_modules/.bin/new-component Button
 ```
 

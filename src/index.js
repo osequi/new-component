@@ -44,24 +44,28 @@ const [componentName] = program.args;
 
 // Templates
 const templateComponentPath = "./templates/component.js";
-const templateStoryPath = "./templates/component.stories.js";
+const templateDataPath = "./templates/component.data.js";
+const templateNativePath = "./templates/component.native.js";
 const templateDocPath = "./templates/component.md";
 const templateTestPath = "./templates/component.test.js";
 const templateIndexPath = "./templates/index.js";
-const templateLangEnEn = "./templates/component.lang.en-en.js";
-const templateLangNlNl = "./templates/component.lang.nl-nl.js";
-const templateLangNlBe = "./templates/component.lang.nl-be.js";
+const templateLangEnUs = "./templates/component.lang.en-us.js";
+const templateLangRoRo = "./templates/component.lang.ro-ro.js";
+const templateLangHuHu = "./templates/component.lang.hu-hu.js";
+const templateLangDeDe = "./templates/component.lang.de-de.js";
 
 // Target files
 const componentDir = `${program.dir}/${componentName}`;
 const componentPath = `${componentDir}/${componentName}.js`;
-const storyPath = `${componentDir}/${componentName}.stories.js`;
+const dataPath = `${componentDir}/${componentName}.data.js`;
+const nativePath = `${componentDir}/${componentName}.native.js`;
 const docPath = `${componentDir}/${componentName}.md`;
 const testPath = `${componentDir}/${componentName}.test.js`;
 const indexPath = `${componentDir}/index.js`;
-const langEnEnPath = `${componentDir}/${componentName}.lang.en-en.js`;
-const langNlNlPath = `${componentDir}/${componentName}.lang.nl-nl.js`;
-const langNlBePath = `${componentDir}/${componentName}.lang.nl-be.js`;
+const langEnUsPath = `${componentDir}/${componentName}.lang.en-us.js`;
+const langRoRoPath = `${componentDir}/${componentName}.lang.ro-ro.js`;
+const langHuHuPath = `${componentDir}/${componentName}.lang.hu-hu.js`;
+const langDeDePath = `${componentDir}/${componentName}.lang.de-de.js`;
 
 // Logging ...
 logIntro({ name: componentName, dir: componentDir });
@@ -111,17 +115,30 @@ mkDirPromise(componentDir)
     logItemCompletion("Component created.");
     return template;
   })
-  .then(() => readFilePromiseRelative(templateStoryPath))
+  .then(() => readFilePromiseRelative(templateDataPath))
   .then(template =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
   .then(template =>
     // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(storyPath, prettify(template))
+    writeFilePromise(dataPath, prettify(template))
   )
   .then(template => {
-    logItemCompletion("Story created.");
+    logItemCompletion("Data created.");
+    return template;
+  })
+  .then(() => readFilePromiseRelative(templateNativePath))
+  .then(template =>
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  )
+  .then(template =>
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(nativePath, prettify(template))
+  )
+  .then(template => {
+    logItemCompletion("React native support file created.");
     return template;
   })
   .then(() => readFilePromiseRelative(templateDocPath))
@@ -163,43 +180,56 @@ mkDirPromise(componentDir)
     logItemCompletion("Index created.");
     return template;
   })
-  .then(() => readFilePromiseRelative(templateLangEnEn))
+  .then(() => readFilePromiseRelative(templateLangEnUs))
   .then(template =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
   .then(template =>
     // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(langEnEnPath, prettify(template))
+    writeFilePromise(langEnUsPath, prettify(template))
   )
   .then(template => {
-    logItemCompletion("Lang En-en created.");
+    logItemCompletion("Lang en-us created.");
     return template;
   })
-  .then(() => readFilePromiseRelative(templateLangNlNl))
+  .then(() => readFilePromiseRelative(templateLangRoRo))
   .then(template =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
   .then(template =>
     // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(langNlNlPath, prettify(template))
+    writeFilePromise(langRoRoPath, prettify(template))
   )
   .then(template => {
-    logItemCompletion("Lang Nl-nl created.");
+    logItemCompletion("Lang ro-ro created.");
     return template;
   })
-  .then(() => readFilePromiseRelative(templateLangNlBe))
+  .then(() => readFilePromiseRelative(templateLangHuHu))
   .then(template =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
   .then(template =>
     // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(langNlBePath, prettify(template))
+    writeFilePromise(langHuHuPath, prettify(template))
   )
   .then(template => {
-    logItemCompletion("Lang Nl-be created.");
+    logItemCompletion("Lang hu-hu created.");
+    return template;
+  })
+  .then(() => readFilePromiseRelative(templateLangDeDe))
+  .then(template =>
+    // Replace our placeholders with real data (so far, just the component name)
+    template.replace(/COMPONENT_NAME/g, componentName)
+  )
+  .then(template =>
+    // Format it using prettier, to ensure style consistency, and write to file.
+    writeFilePromise(langDeDePath, prettify(template))
+  )
+  .then(template => {
+    logItemCompletion("Lang de-de created.");
     return template;
   })
   .then(template => {
