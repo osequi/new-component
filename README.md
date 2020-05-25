@@ -38,6 +38,8 @@ $ new-component Button
 
 ### `clsx` for better class names
 
+See https://www.npmjs.com/package/clsx for details.
+
 ### `i18next` for multi-language support
 
 Will support the following languages / locales:
@@ -48,6 +50,8 @@ Will support the following languages / locales:
 - English: `en-US`
 
 The locales / short codes were chosen from [this list](https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes).
+
+See https://github.com/i18next/react-i18next for details.
 
 #### Setup
 
@@ -117,118 +121,42 @@ In `src/components/Button`:
 
 ```Javascript
 // `Button/Button.js`
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-
-import i18n from "../../i18n";
-import { useTranslation } from "react-i18next";
-import { en_en } from "./Button.lang.en-en";
-import { nl_nl } from "./Button.lang.nl-nl";
-import { nl_be } from "./Button.lang.nl-be";
-
-i18n.addResourceBundle("en-EN", "Button", en_en);
-i18n.addResourceBundle("nl-NL", "Button", nl_nl);
-i18n.addResourceBundle("nl-BE", "Button", nl_be);
-
-/**
- * Defines the prop types
- */
-const propTypes = {};
-
-/**
- * Defines the default props
- */
-const defaultProps = {};
-
-/**
- * Styles the component container
- */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
-
-/**
- * Displays the component
- */
-const Button = props => {
-  const { t } = useTranslation("Button");
-  return (
-    <Container className="COMPONENT_NAME">{t("COMPONENT_NAME")}</Container>
-  );
-};
-
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
-
-export default Button;
-export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
 ```
 
 ```Javascript
-// `Button/Button.stories.js`
-import React from "react";
-import Button from "./Button";
-import ApiDoc from "./Button.md";
+// `Button/Button.data.js`
+```
 
-export default {
-  component: Button,
-  title: "Button",
-  parameters: { notes: ApiDoc }
-};
-
-export const Default = () => <Button />;
+```Javascript
+// `Button/Button.native.js`
 ```
 
 ```Markdown
 // `Button/Button.md`
-# Button
 ```
 
 ```Javascript
 // `Button/Button.test.js`
-import React from "react";
-import { render } from "@testing-library/react";
-import Button from "./Button";
-
-it("has a Button component", () => {
-  const { getByText } = render(<Button />);
-  expect(getByText("Button")).toBeInTheDocument();
-});
 ```
 
 ```Javascript
 // `Button/index.js`
-export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
 ```
 
 ```Javascript
-// `Button/Button.lang.en-en.js`
-const en_en = {
-  Button: "Button"
-};
-
-export { en_en };
+// `Button/Button.lang.en-us.js`
 ```
 
 ```Javascript
-// `Button/Button.lang.nl-nl.js`
-const nl_nl = {
-  Button: "Button (nl_nl)"
-};
-
-export { nl_nl };
+// `Button/Button.lang.de-de.js`
 ```
 
 ```Javascript
-// `Button/Button.lang.nl-be.js`
-const nl_be = {
-  Button: "Button (nl_be)"
-};
+// `Button/Button.lang.ro-ro.js`
+```
 
-export { nl_be };
+```Javascript
+// `Button/Button.lang.hu-hu.js`
 ```
 
 ### Modify & test locally
@@ -272,6 +200,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.4.0] - 2020-05-25
+
+#### Added
+
+- `clsx`, for better class names
+- Material UI, as the default Design System
+
+#### Removed
+
+- `styled-components`, replaced with Material UI
+- Storybook, never used in the previous few projects
 
 ### [0.3.0] - 2020-01-14
 

@@ -1,10 +1,23 @@
+/**
+ * Component short description
+ *
+ * @see COMPONENT_NAME.md for details
+ */
+
+/**
+ * Imports React and third party packages
+ */
 import React from "react";
-import PropTypes from "prop-types";
 import clsx from "clsx";
 
 /**
  * Imports project specific components and hooks
  */
+
+/**
+ * Imports propTypes / component data requirements
+ */
+import { propTypes, defaultProps } from "./COMPONENT_NAME.data";
 
 /**
  * Imports Material UI components
@@ -28,16 +41,6 @@ i18n.addResourceBundle("en-US", "COMPONENT_NAME", en_us);
 i18n.addResourceBundle("de-DE", "COMPONENT_NAME", de_de);
 
 /**
- * Defines the prop types
- */
-const propTypes = {};
-
-/**
- * Defines the default props
- */
-const defaultProps = {};
-
-/**
  * Styles the component
  */
 const useStyles = makeStyles(theme => ({
@@ -56,7 +59,7 @@ const COMPONENT_NAME = props => {
   const { t } = useTranslation("COMPONENT_NAME");
 
   return (
-    <Grid className={clsx(container, "COMPONENT_NAME")}>
+    <Grid container className={clsx(container, "COMPONENT_NAME")}>
       {t("COMPONENT_NAME")}
     </Grid>
   );
