@@ -34,9 +34,20 @@ $ cd PROJECT_DIRECTORY
 $ new-component Button
 ```
 
-### Special edition
+### Packages included
 
-This version of `new-component` is a special edition supporting translations with `i18next` at component level.
+### `clsx` for better class names
+
+### `i18next` for multi-language support
+
+Will support the following languages / locales:
+
+- Romanian (default): `ro-RO`
+- Hungarian: `hu-HU`
+- German: `de-DE`
+- English: `en-US`
+
+The locales / short codes were chosen from [this list](https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes).
 
 #### Setup
 

@@ -1,5 +1,5 @@
-const en_en = {
+const en_us = {
   COMPONENT_NAME: "COMPONENT_NAME"
 };
 
-export { en_en };
+export { en_us };
