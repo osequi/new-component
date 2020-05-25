@@ -59,8 +59,10 @@ const COMPONENT_NAME = props => {
   const { t } = useTranslation("COMPONENT_NAME");
 
   return (
-    <Grid container className={clsx(container, "COMPONENT_NAME")}>
-      {t("COMPONENT_NAME")}
+    <Grid container>
+      <Grid item xs={12} className={clsx(container, "COMPONENT_NAME")}>
+        {t("COMPONENT_NAME")}
+      </Grid>
     </Grid>
   );
 };

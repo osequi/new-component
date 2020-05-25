@@ -121,6 +121,7 @@ In `src/components/Button`:
 
 ```Javascript
 // `Button/Button.js`
+//
 ```
 
 ```Javascript
@@ -178,8 +179,14 @@ This will create a file like `new-component@0.0.1.tgz`.
 In another folder:
 
 ```bash
-npm i <path_to_new_component_repo>/metamn-new-component@0.0.1.tgz &&
+npx create-react-app new-component-test
+cd new-component-test
+mkdir src/components
+yarn add <path_to_new_component_repo>/metamn-new-component@0.0.1.tgz
 ./node_modules/.bin/new-component Button
+# create the i18n.j file
+# import and render <Button> in App.js
+yarn start # run server and check the result
 ```
 
 #### Update the changelog
