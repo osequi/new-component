@@ -11,11 +11,11 @@ import React from "react";
 import clsx from "clsx";
 
 /**
- * Imports project specific components and hooks
+ * Imports other components and hooks
  */
 
 /**
- * Imports propTypes / component data requirements
+ * Imports data
  */
 import { propTypes, defaultProps } from "./COMPONENT_NAME.data";
 
@@ -28,7 +28,7 @@ import Grid from "@material-ui/core/Grid";
 /**
  * Imports translations
  */
-import i18n from "../../i18n";
+import i18n from "../../../i18n";
 import { useTranslation } from "react-i18next";
 import { ro_ro } from "./COMPONENT_NAME.lang.ro-ro";
 import { hu_hu } from "./COMPONENT_NAME.lang.hu-hu";
@@ -43,18 +43,18 @@ i18n.addResourceBundle("de-DE", "COMPONENT_NAME", de_de);
 /**
  * Styles the component
  */
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(1),
     margin: theme.spacing(1),
-    border: "1px solid"
-  }
+    border: "1px solid",
+  },
 }));
 
 /**
  * Displays the component
  */
-const COMPONENT_NAME = props => {
+const COMPONENT_NAME = (props) => {
   const { container } = useStyles(props);
   const { t } = useTranslation("COMPONENT_NAME");
 
@@ -73,5 +73,5 @@ COMPONENT_NAME.defaultProps = defaultProps;
 export default COMPONENT_NAME;
 export {
   propTypes as COMPONENT_NAMEPropTypes,
-  defaultProps as COMPONENT_NAMEDefaultProps
+  defaultProps as COMPONENT_NAMEDefaultProps,
 };

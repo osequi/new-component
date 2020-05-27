@@ -1,5 +1,7 @@
 /**
- * Defines the data requirements for the company
+ * Defines the data requirements for the component
+ *
+ * @see COMPONENT_NAME.md for details
  */
 import PropTypes from "prop-types";
 

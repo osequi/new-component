@@ -102,8 +102,8 @@ i18n
     keySeparator: false, // we do not use keys in form messages.welcome
 
     interpolation: {
-      escapeValue: false // react already safes from xss
-    }
+      escapeValue: false, // react already safes from xss
+    },
   });
 
 export default i18n;
@@ -331,6 +331,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.4.3] - 2020-05-27
+
+#### Changed
+
+- The copy on some comments
+- `import i18n from "../../../i18n";` - that 3 levels of nesting (changed from two) means in this project new components will mostly be added under a page subfolder. Ex: `src/components/pagename/Component`
 
 ### [0.4.2] - 2020-05-25
 
