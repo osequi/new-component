@@ -143,4 +143,4 @@ unleash -p -d # consecutive deploys
 
 Please check [CHANGELOG.md](CHANGELOG.md).
 
-Generated with [Unleash](https://github.com/Netflix/unleash) using [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Semantic versioning](https://semver.org/).
+Generated with [Unleash](https://github.com/Netflix/unleash) using [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Semantic versioning](https://semver.org/).
