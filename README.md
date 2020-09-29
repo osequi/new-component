@@ -28,7 +28,7 @@ In `src/components/Button`:
 ```js
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
