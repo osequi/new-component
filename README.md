@@ -1,8 +1,8 @@
-## Create a new React component
+# Create a new React component
 
 Forked from https://github.com/metamn/new-component.
 
-### Usage
+## Usage
 
 Install via NPM:
 
@@ -21,14 +21,19 @@ $ cd PROJECT_DIRECTORY
 $ new-component Button
 ```
 
-### What you'll get
+## What you'll get
 
 In `src/components/Button`:
 
-```Javascript
-// `Button/Button.js`
+```js
 import React from "react";
 import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+
+/**
+ * Imports other components and hooks
+ */
 
 /**
  * Defines the prop types
@@ -40,12 +45,20 @@ const propTypes = {};
  */
 const defaultProps = {};
 
+/**
+ * Defines the styles
+ */
+const useStyles = makeStyles(() => ({
+  container: {},
+}));
 
 /**
  * Displays the component
  */
-const Button = props => {
-  return <div className="Button">Button</div>;
+const Button = (props) => {
+  const { container } = useStyles(props);
+
+  return <div className={clsx("Button", container)}>Button</div>;
 };
 
 Button.propTypes = propTypes;
@@ -55,27 +68,29 @@ export default Button;
 export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
 ```
 
-```Javascript
+```js
 // `Button/Button.stories.js`
 import React from "react";
 import Button from "./Button";
-import ApiDoc from "./Button.md";
 
 export default {
   component: Button,
   title: "Button",
-  parameters: { notes: ApiDoc }
 };
 
-export const Default = () => <Button />;
+const Template = (args) => <Button {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {};
 ```
 
-```Markdown
+```md
 // `Button/Button.md`
-# Button
+
+## Button
 ```
 
-```Javascript
+```js
 // `Button/Button.test.js`
 import React from "react";
 import { render } from "@testing-library/react";
@@ -87,22 +102,20 @@ it("has a Button component", () => {
 });
 ```
 
-```Javascript
+```js
 // `Button/index.js`
 export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
 ```
 
-### Modify & test locally
+## Modify & test locally
 
 You can easily fork this repository, modify, test and publish on npm.
 
-NOTE: Always start with changing the version number in `package.json` !!
+### Test locally
 
-#### Test locally
+In this current repository:
 
-In this current repo:
-
-```shell
+```sh
 npm pack
 ```
 
@@ -110,86 +123,23 @@ This will create a file like `new-component@0.0.1.tgz`.
 
 In another folder:
 
-```bash
-npm i <path_to_new_component_repo>/new-component@0.0.1.tgz &&
+```sh
+mkdir test
+cd test
+npm i <path_to_new_component_repo>/new-component@0.0.1.tgz
+mkdir src
+mkdir src/components
 ./node_modules/.bin/new-component Button
 ```
 
-#### Update the changelog
+## Publish
 
-NOTE: Always update the changelog
-
-#### Publish
-
-First push changes to Github. Then:
-
-```bash
-npm publish
+```sh
+unleash -p -d
 ```
 
 ## Changelog
 
-All notable changes to this project will be documented in this file.
+Please check [CHANGELOG.md](CHANGELOG.md).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-### [0.2.0] - 2019-11-6
-
-#### Added
-
-- Default tests
-
-#### Changed
-
-- Storybook stories to follow the Component Story Format: https://storybook.js.org/docs/formats/component-story-format/
-
-#### Removed
-
-- `styled-components`, because many times components use another library, like `material-ui`
-
-### [0.1.2] - 2018-08-17
-
-#### Fixed
-
-- Exporting default props
-
-### [0.1.1] - 2018-08-17
-
-#### Changed
-
-- How default props are exported
-
-### [0.1.0] - 2018-07-03
-
-#### Added
-
-- New templates for function components
-
-### [0.0.4] - 2018-12-11
-
-#### Fixed
-
-- Markdown is not run through `prettify()`.
-
-### [0.0.3] - 2018-12-11
-
-#### Added
-
-- Markdown documentation support.
-
-### [0.0.2] - 2018-12-11
-
-#### Added
-
-- A CHANGELOG section in README.
-
-#### Changed
-
-- The install instructions in README.
-
-### 0.0.1 - 2018-12-11
-
-#### Added
-
-- Initial release
+Generated with [Unleash](https://github.com/Netflix/unleash) using [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Semantic versioning](https://semver.org/).
