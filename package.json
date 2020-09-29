@@ -1,6 +1,6 @@
 {
-  "name": "@metamn/new-component",
-  "version": "0.2.0",
+  "name": "@osequi/new-component",
+  "version": "0.1.0",
   "description": "CLI for creating new React components",
   "main": "src/index.js",
   "scripts": {
@@ -21,5 +21,13 @@
     "chalk": "2.1.0",
     "commander": "2.11.0",
     "prettier": "1.5.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osequi/new-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/osequi/new-component/issues"
+  },
+  "homepage": "https://github.com/osequi/new-component#readme"
 }

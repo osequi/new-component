@@ -1,7 +1,6 @@
 ## Create a new React component
 
-Forked from https://github.com/joshwcomeau/new-component.
-Added Storybook and basic testing.
+Forked from https://github.com/metamn/new-component.
 
 ### Usage
 
@@ -9,10 +8,10 @@ Install via NPM:
 
 ```bash
 # Using Yarn:
-$ yarn global add @metamn/new-component
+$ yarn global add @osequi/new-component
 
 # or, using NPM
-$ npm i -g @metamn/new-component
+$ npm i -g @osequi/new-component
 ```
 
 Run:
@@ -95,7 +94,7 @@ export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
 
 ### Modify & test locally
 
-You can easily fork this repo, modify, test, and publish on npm.
+You can easily fork this repository, modify, test and publish on npm.
 
 NOTE: Always start with changing the version number in `package.json` !!
 
