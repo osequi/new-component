@@ -135,7 +135,8 @@ mkdir src/components
 ## Publish
 
 ```sh
-unleash -p -d
+npm publish --access public # first deploy
+unleash -p -d # consecutive deploys
 ```
 
 ## Changelog
