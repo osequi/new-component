@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+### 0.1.2 (2020-09-29)
+
+
+#### Bug Fixes
+
+* Adding the clx dependency ([a362462f](git+https://github.com/osequi/new-component.git/commit/a362462f))
+* Moving from @material-ui/core/styles to @material-ui/styles ([68711c17](git+https://github.com/osequi/new-component.git/commit/68711c17))
+
+
 <a name="0.1.1"></a>
 ### 0.1.1 (2020-09-29)
 
