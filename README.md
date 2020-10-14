@@ -26,39 +26,41 @@ $ new-component Button
 In `src/components/Button`:
 
 ```js
+// `Button/Button.js`
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
-import clsx from "clsx";
+import { cx } from "emotion";
+import { useStyles } from "../../hooks";
 
 /**
- * Imports other components and hooks
+ * Imports other components and hooks.
  */
 
 /**
- * Defines the prop types
+ * Defines the prop types.
  */
 const propTypes = {};
 
 /**
- * Defines the default props
+ * Defines the default props.
  */
 const defaultProps = {};
 
 /**
- * Defines the styles
+ * Defines the styles.
  */
-const useStyles = makeStyles(() => ({
-  container: {},
-}));
+const container = {
+  label: "Container",
+};
 
 /**
- * Displays the component
+ * Displays the component.
+ * @see Button.md
  */
 const Button = (props) => {
-  const { container } = useStyles(props);
+  const { containerKlass } = useStyles([container], props);
 
-  return <div className={clsx("Button", container)}>Button</div>;
+  return <div className={cx("Button", containerKlass)}>Button</div>;
 };
 
 Button.propTypes = propTypes;
@@ -66,6 +68,25 @@ Button.defaultProps = defaultProps;
 
 export default Button;
 export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
+```
+
+```js
+// `Button/Button.demo.js`
+import React from "react";
+
+/**
+ * Imports other components and hooks.
+ */
+import Button from ".";
+
+/**
+ * Displays the Button demo.
+ */
+const ButtonDemo = (props) => {
+  return <Button />;
+};
+
+export default ButtonDemo;
 ```
 
 ```js
@@ -105,6 +126,8 @@ it("has a Button component", () => {
 ```js
 // `Button/index.js`
 export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
+
+export { default as ButtonDemo } from "./Button.demo";
 ```
 
 ## Modify & test locally

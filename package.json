@@ -18,11 +18,9 @@
     "new-component": "./src/index.js"
   },
   "dependencies": {
-    "@material-ui/styles": "^4.10.0",
     "chalk": "2.1.0",
-    "clsx": "^1.1.1",
     "commander": "2.11.0",
-    "prettier": "1.5.3"
+    "prettier": "^2.1.2"
   },
   "repository": {
     "type": "git",
@@ -31,5 +29,6 @@
   "bugs": {
     "url": "https://github.com/osequi/new-component/issues"
   },
-  "homepage": "https://github.com/osequi/new-component#readme"
+  "homepage": "https://github.com/osequi/new-component#readme",
+  "devDependencies": {}
 }

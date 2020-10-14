@@ -1,37 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
-import clsx from "clsx";
+import { cx } from "emotion";
+import { useStyles } from "../../hooks";
 
 /**
- * Imports other components and hooks
+ * Imports other components and hooks.
  */
 
 /**
- * Defines the prop types
+ * Defines the prop types.
  */
 const propTypes = {};
 
 /**
- * Defines the default props
+ * Defines the default props.
  */
 const defaultProps = {};
 
 /**
- * Defines the styles
+ * Defines the styles.
  */
-const useStyles = makeStyles(() => ({
-  container: {},
-}));
+const container = {
+  label: "Container",
+};
 
 /**
- * Displays the component
+ * Displays the component.
+ * @see COMPONENT_NAME.md
  */
 const COMPONENT_NAME = (props) => {
-  const { container } = useStyles(props);
+  const { containerKlass } = useStyles([container], props);
 
   return (
-    <div className={clsx("COMPONENT_NAME", container)}>COMPONENT_NAME</div>
+    <div className={cx("COMPONENT_NAME", containerKlass)}>COMPONENT_NAME</div>
   );
 };
 
