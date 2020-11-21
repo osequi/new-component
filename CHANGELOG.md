@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+### 2.0.1 (2020-11-21)
+
+
+#### Bug Fixes
+
+* Adding a fake @example ([ede0262a](git+https://github.com/osequi/new-component.git/commit/ede0262a))
+* Importing the component in test ([6cfd6a19](git+https://github.com/osequi/new-component.git/commit/6cfd6a19))
+
+
 <a name="2.0.0"></a>
 ## 2.0.0 (2020-11-21)
 
