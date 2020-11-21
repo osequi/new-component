@@ -10,13 +10,13 @@ const {
   logIntro,
   logItemCompletion,
   logConclusion,
-  logError
+  logError,
 } = require("./helpers");
 const {
   requireOptional,
   mkDirPromise,
   readFilePromiseRelative,
-  writeFilePromise
+  writeFilePromise,
 } = require("./utils");
 
 // Load our package.json, so that we can pass the version onto `commander`.
@@ -43,21 +43,15 @@ program
 const [componentName] = program.args;
 
 // Templates
-const templateComponentPath = "./templates/component.js";
-const templateDemoPath = "./templates/component.demo.js";
-const templateStoryPath = "./templates/component.stories.js";
-const templateDocPath = "./templates/component.md";
-const templateTestPath = "./templates/component.test.js";
-const templateIndexPath = "./templates/index.js";
+const templateComponentPath = "./templates/component.tsx";
+const templateTestPath = "./templates/component.test.tsx";
+const templateIndexPath = "./templates/index.ts";
 
 // Target files
 const componentDir = `${program.dir}/${componentName}`;
-const componentPath = `${componentDir}/${componentName}.js`;
-const demoPath = `${componentDir}/${componentName}.demo.js`;
-const storyPath = `${componentDir}/${componentName}.stories.js`;
-const docPath = `${componentDir}/${componentName}.md`;
-const testPath = `${componentDir}/${componentName}.test.js`;
-const indexPath = `${componentDir}/index.js`;
+const componentPath = `${componentDir}/${componentName}.tsx`;
+const testPath = `${componentDir}/${componentName}.test.tsx`;
+const indexPath = `${componentDir}/index.ts`;
 
 // Logging ...
 logIntro({ name: componentName, dir: componentDir });
@@ -91,90 +85,51 @@ if (fs.existsSync(fullPathToComponentDir)) {
 // Create the files one by one
 mkDirPromise(componentDir)
   .then(() => readFilePromiseRelative(templateComponentPath))
-  .then(template => {
+  .then((template) => {
     logItemCompletion("Directory created.");
     return template;
   })
-  .then(template =>
+  .then((template) =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
-  .then(template =>
+  .then((template) =>
     // Format it using prettier, to ensure style consistency, and write to file.
     writeFilePromise(componentPath, prettify(template))
   )
-  .then(template => {
+  .then((template) => {
     logItemCompletion("Component created.");
     return template;
   })
-  .then(() => readFilePromiseRelative(templateDemoPath))
-  .then(template =>
-    // Replace our placeholders with real data (so far, just the component name)
-    template.replace(/COMPONENT_NAME/g, componentName)
-  )
-  .then(template =>
-    // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(demoPath, prettify(template))
-  )
-  .then(template => {
-    logItemCompletion("Demo created.");
-    return template;
-  })
-  .then(() => readFilePromiseRelative(templateStoryPath))
-  .then(template =>
-    // Replace our placeholders with real data (so far, just the component name)
-    template.replace(/COMPONENT_NAME/g, componentName)
-  )
-  .then(template =>
-    // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(storyPath, prettify(template))
-  )
-  .then(template => {
-    logItemCompletion("Story created.");
-    return template;
-  })
-  .then(() => readFilePromiseRelative(templateDocPath))
-  .then(template =>
-    // Replace our placeholders with real data (so far, just the component name)
-    template.replace(/COMPONENT_NAME/g, componentName)
-  )
-  .then(template =>
-    // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(docPath, template)
-  )
-  .then(template => {
-    logItemCompletion("Doc created.");
-    return template;
-  })
   .then(() => readFilePromiseRelative(templateTestPath))
-  .then(template =>
+  .then((template) =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
-  .then(template =>
+  .then((template) =>
     // Format it using prettier, to ensure style consistency, and write to file.
     writeFilePromise(testPath, prettify(template))
   )
-  .then(template => {
+  .then((template) => {
     logItemCompletion("Test created.");
     return template;
   })
   .then(() => readFilePromiseRelative(templateIndexPath))
-  .then(template =>
+  .then((template) =>
     // Replace our placeholders with real data (so far, just the component name)
     template.replace(/COMPONENT_NAME/g, componentName)
   )
-  .then(template =>
+  .then((template) =>
     // Format it using prettier, to ensure style consistency, and write to file.
     writeFilePromise(indexPath, prettify(template))
   )
-  .then(template => {
+  .then((template) => {
     logItemCompletion("Index created.");
     return template;
   })
-  .then(template => {
+  .then((template) => {
     logConclusion();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
   });

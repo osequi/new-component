@@ -14,6 +14,8 @@ $ yarn global add @osequi/new-component
 $ npm i -g @osequi/new-component
 ```
 
+You can also install the package locally for a project.
+
 Run:
 
 ```bash
@@ -26,108 +28,73 @@ $ new-component Button
 In `src/components/Button`:
 
 ```js
-// `Button/Button.js`
+// `Button/Button.tsx`
 import React from "react";
-import PropTypes from "prop-types";
-import { cx } from "emotion";
+import { cx } from "@emotion/css";
 import { useStyles } from "../../hooks";
 
 /**
- * Imports other components and hooks.
+ * Imports other types, components and hooks.
  */
 
 /**
- * Defines the prop types.
+ * Defines the Button type.
+ * @category Components
+ * @example
  */
-const propTypes = {};
+export type TButton = {} & typeof ButtonDefaultProps;
 
 /**
- * Defines the default props.
+ * Defines the Button default props.
+ * @category Components
+ * @example
  */
-const defaultProps = {};
+const ButtonDefaultProps = {};
 
 /**
  * Defines the styles.
+ * @ignore
  */
 const container = {
   label: "Container",
 };
 
 /**
- * Displays the component.
- * @see Button.md
+ * Displays the Button.
+ * @category Components
+ * @component
+ * @example
+ * return <Button />
  */
-const Button = (props) => {
-  const { containerKlass } = useStyles([container], props);
+const Button = (props: TButton) => {
+  const { containerKlass } = useStyles(container, props);
 
   return <div className={cx("Button", containerKlass)}>Button</div>;
 };
 
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
+Button.defaultProps = ButtonDefaultProps;
 
 export default Button;
-export { propTypes as ButtonPropTypes, defaultProps as ButtonDefaultProps };
+export { ButtonDefaultProps };
 ```
 
 ```js
-// `Button/Button.demo.js`
-import React from "react";
-
-/**
- * Imports other components and hooks.
- */
-import Button from ".";
-
-/**
- * Displays the Button demo.
- */
-const ButtonDemo = (props) => {
-  return <Button />;
-};
-
-export default ButtonDemo;
-```
-
-```js
-// `Button/Button.stories.js`
-import React from "react";
-import Button from "./Button";
-
-export default {
-  component: Button,
-  title: "Button",
-};
-
-const Template = (args) => <Button {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {};
-```
-
-```md
-// `Button/Button.md`
-
-## Button
-```
-
-```js
-// `Button/Button.test.js`
+// `Button/Button.test.tsx`
 import React from "react";
 import { render } from "@testing-library/react";
-import Button from "./Button";
+import "@testing-library/jest-dom/extend-expect";
+import { Button } from "./Button";
 
-it("has a Button component", () => {
-  const { getByText } = render(<Button />);
-  expect(getByText("Button")).toBeInTheDocument();
+it("Renders the component", () => {
+  const { container } = render(<Button />);
+  expect(container.firstChild).not.toBeNull();
 });
 ```
 
 ```js
-// `Button/index.js`
-export { default, ButtonPropTypes, ButtonDefaultProps } from "./Button";
-
-export { default as ButtonDemo } from "./Button.demo";
+// `Button/index.ts`
+export type { TButton } from "./Button";
+export { default as Button, ButtonDefaultProps } from "./Button";
 ```
 
 ## Modify & test locally
