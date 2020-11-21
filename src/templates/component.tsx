@@ -10,6 +10,7 @@ import { useStyles } from "../../hooks";
  * Defines the COMPONENT_NAME type.
  * @category Components
  * @example
+ * Example here...
  */
 export type TCOMPONENT_NAME = {} & typeof COMPONENT_NAMEDefaultProps;
 
@@ -17,6 +18,7 @@ export type TCOMPONENT_NAME = {} & typeof COMPONENT_NAMEDefaultProps;
  * Defines the COMPONENT_NAME default props.
  * @category Components
  * @example
+ * Example here...
  */
 const COMPONENT_NAMEDefaultProps = {};
 
